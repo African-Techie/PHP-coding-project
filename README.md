@@ -1,2 +1,2 @@
-# PHP coding-project
- Login/Signup for Admin/User with vanilla PHP
+# Fyvee Music App Project
+Music Streaming Web App with vanilla PHP
