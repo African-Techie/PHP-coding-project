@@ -1,0 +1,100 @@
+
+footer {
+    display: block;
+    font-family: "Futura Bk BT", sans-serif;
+    color: white;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+
+}
+
+.footer-parts h3 {
+    text-align: left;
+    margin-top: 10px;
+    color: white;
+    margin-left: 0;
+    font-family: "Futura Bk BT", sans-serif;
+
+}
+
+#footer-1 {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 20px;
+    flex-wrap: wrap;
+}
+
+#footer-1 hr{
+    width: 300px;
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: -10px;
+    margin-bottom: 40px;
+    border: none;
+    height: 1px;
+    background-color: white;
+}
+
+#footer-2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#footer-1 a, #footer-2 a, .footer-2 a {
+    color: skyblue;
+    text-decoration: none;
+    list-style: none;
+}
+
+#footer-1 li {
+    list-style: none;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    margin-left: -40px;
+}
+
+.footer_section_2 {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 100%;
+}
+
+#footerLogo {
+    width: 50px;
+    height: auto;
+    margin-right: 100px;
+    margin-top: 10px;
+}
+
+.vertical_separator {
+    width: 1px;
+    height: 70px;
+    margin-top: -2px;
+    border-left: 1px solid whitesmoke;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.social-links{
+    display: flex;
+    justify-content: flex-start;
+}
+.social-links div{
+    margin-right: 10px;
+    margin-top: 23px;
+}
+.social-links div img{
+    width: 20px;
+    margin-left: 12px;
+    transition: all 0.3s ease-in-out 0s;
+}
+.social-links div img:hover{
+    /*transform: rotate(-45deg);*/
+    transform: scale(2.0);
+}
+#facebook-icon{
+    margin-left: 15px;
+}
+
+

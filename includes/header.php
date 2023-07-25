@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <style>
+    
         body{
             display: flex;
             justify-content: center;
@@ -25,6 +29,10 @@
             align-items:center; 
             width: 100%;
             margin-top: 10vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, p {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .pag-item {
@@ -92,6 +100,62 @@
         .profile-img {
             width: 100px;
             border-radius: 50%;
+        }
+
+        .entry {
+            margin-top: 20px;
+        }
+
+        .entry input{
+            width: 60%;
+            height: 25px;
+            float: left;
+            margin-left: 0;
+        }
+
+        .entry button {
+            width:30%;
+            background-color: black;
+            float: right;
+            font-size: 12px;
+            padding: 7px 5px;
+        }
+
+        .logout-btn a{
+            color: white; 
+            text-decoration:none; 
+            font-size: 16px;
+            padding: 10px 10px;
+            z-index: 6;
+        }
+        .search-btn {
+            padding: 10px;
+            background-color: gray;
+            border: 1px solid gray;
+            border-radius: 0px;
+            display: flex;
+            justify-content: space-around;
+            font-size: medium;
+            color: white;
+            text-decoration: none;
+        }
+
+        .search-message i{
+            color:#621513;
+        }
+
+        .editor {
+            display: none;
+        }
+
+        .show-editor {
+            margin-top: 20px;
+            display: block;
+            height: auto;
+        }
+
+        .close-editor {
+            display: none;
         }
     </style>
 </head>

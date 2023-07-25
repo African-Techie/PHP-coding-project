@@ -1,7 +1,5 @@
 <?php
-    session_start();
     include('../includes/header.php');
-    require('../includes/database.php');
     
     if(isset($_SESSION['id']) && $_SESSION['status'] == 1){
 
@@ -59,6 +57,18 @@
                     }
 
                 }
+
+                // check password
+                $pass = $_POST['password'];
+                if(!empty($pass)){
+                    
+                    $psd = password_hash($pass, PASSWORD_DEFAULT);
+                    $update ="UPDATE users SET password_field = '$psd' WHERE id = '$id'";
+                    $rslt = mysqli_query($dbconnect, $update);
+                    $rslt ? header('Location:members.php?success=Account updated successfully') :header('Location:members.php?error=Error updating password');
+    
+                } 
+
                 // image
                 if(isset($_FILES['image'])){
                     $target = "../uploads/profile-images/";
@@ -109,7 +119,7 @@
 
             if(mysqli_num_rows($result) == 1 ){ 
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                echo "<tr><td colspan='2'><div><h5 align=center>Updating details of <a href='members.php'>". $row['username']."</a></h5></div></td></tr>";
+                echo "<tr><td colspan='2'><div><h5 align=center>Updating details of ". $row['username']."</a></h5></div></td></tr>";
             }
         ?>
     
@@ -124,6 +134,10 @@
         <tr>
             <td>Email</td>
             <td><input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="text" name="password" value="<?php if (isset($_POST['password'])) echo $_POST['password']; ?>"></td>
         </tr>
         <tr>
             <td>Image</td>

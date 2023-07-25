@@ -1,4 +1,6 @@
-
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .navbar {
     background-color: #333;
     color: #fff;
@@ -9,6 +11,7 @@
     height: 10vh;
     width: 100%;
     margin-left: -10px;
+    margin-top: -12px;
 }
 
 .admin-name a {
@@ -22,6 +25,10 @@
     color: #fff;
     text-decoration: none;
     margin-right: 20px;
+}
+
+.navbar-menu form {
+    margin-left: 31px;
 }
 
 .navbar-toggle {

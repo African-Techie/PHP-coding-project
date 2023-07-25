@@ -1,7 +1,6 @@
 <?php
-    session_start();
     include('includes/header.php');
-    require('includes/database.php');
+    require_once('includes/database.php');
     
     $errors = array();
 
@@ -69,6 +68,17 @@
                                 }
 
                             }
+
+                             // check password
+                            $pass = $_POST['password'];
+                            if(!empty($pass)){
+                                
+                                $psd = password_hash($pass, PASSWORD_DEFAULT);
+                                $update ="UPDATE users SET password_field = '$psd' WHERE id = '$id'";
+                                $rslt = mysqli_query($dbconnect, $update);
+                                $rslt ? header('Location:user_profile.php?success=Account updated successfully') :header('Location:members.php?error=Error updating password');
+                            } 
+
                             // image
                             if(isset($_FILES['image'])){
                                 $target = "uploads/profile-images/";
@@ -112,30 +122,24 @@
         } 
     }
     else {
-        header('location:user_profile.php?id='.$id);
+        header('location:user_profile.php');
     }
 ?>
 
-<form action="userupdate.php" method = "post" enctype = "multipart/form-data">
+<form action="user_update.php#" method = "post" enctype = "multipart/form-data">
 
     <?php
         foreach($errors as $msg){
-            echo "<p class='error error-msg login-error'><i class='fa fa-exclamation-circle warning-icon'></i>  $msg<br></p>";
+            echo "<p class='error-msg user-update-errors'><i class='fa fa-exclamation-circle warning-icon'></i>  $msg<br></p>";
         }
     ?>
 
-<table cellspacing='0' cellpadding='7' border='1px solid #d3d3d3' border-collapse='collapse' style='width:30%; height:10px; border:1px solid #d3d3d3'>
+<table cellspacing='0' cellpadding='7' border='1px solid #d3d3d3' border-collapse='collapse' style='width:100%; height:10px; border:1px solid #d3d3d3' id="editorClose">
 
-    <?php
-        $sql = "SELECT CONCAT(first_name, ' ', second_name) AS username FROM users WHERE id=$id";
-        $result = mysqli_query($dbconnect, $sql);
-
-        if(mysqli_num_rows($result) == 1 ){ 
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            echo "<tr><td colspan='2'><h3>Change any of your credentials</h3></td></tr>";
-            echo"<tr><td colspan='2'><div><h5 align=center><div><h5 align=center>You are interacting as <a href='user_profile.php?id=$id'>". $row['username']."</a></h5></div></td></tr>";
-        } 
-    ?>
+    <tr>
+        <td style="border-right: none"><h3>Change any of these</h3></td>
+        <td align="right" width="10%" style="border-left:none"><button id="closeToggle"> <i class="fa fa-close"></i> </button></td>
+    </tr>
     
     <tr>
         <td>Firstname</td>
@@ -150,14 +154,33 @@
         <td><input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"></td>
     </tr>
     <tr>
+        <td>Password</td>
+        <td><input type="password" name="password" value="<?php if (isset($_POST['password'])) echo $_POST['password']; ?>"></td>
+    </tr>
+    <tr>
         <td>Image</td>
         <td><input type="file" name="image"></td>
     </tr>
         
     </table>
     <br>
-    <div>Enter current password:</div><br>
-    <input type="password" name="pswd" value="<?php if (isset($_POST['pswd'])) echo $_POST['pswd']; ?>" style="border: 1px solid;"><br><br>
-    <button type="submit" style="margin-left:20px; padding: 7px 25px; font-size: 15px;">SUBMIT</button>
+    Enter current password to save changes:<br>
+    <div class="entry">
+        <input type="password" name="pswd" value="<?php if (isset($_POST['pswd'])) echo $_POST['pswd']; ?>" style="border: 1px solid;">
+        <button type="submit">SUBMIT</button>
+    </div>
+
+    <hr style="width:100%; margin-top: 80px;">
     <input type="hidden" value="<?php echo $id ?>">
 </form>
+
+<script>
+    const closeToggle = document.getElementById('closeToggle');
+    const closeEditor = document.getElementById('editor');
+
+    closeToggle.addEventListener('click', () => {
+    closeEditor.classList.toggle('close-editor');
+
+    });
+
+</script>

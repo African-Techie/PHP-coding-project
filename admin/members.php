@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    require('../includes/database.php');
     include('../includes/header.php');
-    include('admin-nav.php');
+    
+    $errors = array();
 
-    if(!isset($_SESSION['status']) || $_SESSION['status'] != 1){
+    if(!isset($_SESSION['id']) || $_SESSION['status'] != 1) {
         header('location:../index.php');
+        exit();
     }
-    if(isset($_SESSION['status']) && $_SESSION['status'] == 1){
-
+    else {
+        
         $display = 5;
 
         if(isset($_GET['p']) && is_numeric($_GET['p'])) {
@@ -49,17 +49,17 @@
 
         if(isset($_GET['error'])){
             echo "<h3 class='del-msg'>
-              <i class='fa fa-exclamation-triangle warning-icon'>
+                <i class='fa fa-exclamation-triangle warning-icon'>
                 $_GET[error]
-              </i>
+                </i>
             </h3>";
         }
 
         if(isset($_GET['success'])){
             echo "<h3 class='del-msg del-success'>
-              <i class='fa fa-check warning-icon'>
+                <i class='fa fa-check warning-icon'>
                 $_GET[success]
-              </i>
+                </i>
             </h3>";
         }
 
@@ -68,7 +68,7 @@
 
         if($result){
             
-            echo "<table align='center' cellspacing='0' cellpadding='3' style='width: 70%'>
+            echo "<table align='center' cellspacing='0' cellpadding='3' style='width: 100%'>
                 <caption style='caption-side:bottom'>
                     
                     <h3 style='margin-top: -10px;'>";
@@ -120,10 +120,13 @@
                     <td ><b>".$status."</b></td>
                     <td >".$row['first_name']."</td> 
                     <td >".$row['second_name']."</td> 
-                    <td ><img src='../uploads/profile-images/" .$row['img']." ?>' style='width:30px;'</td> 
+                    <td ><img src='../uploads/profile-images/" .$row['img']." ?>' style='width:30px;'></td> 
                     <td >".$row['email']."</td> 
                     <td >".$row['regdate']."</td>
-                    <td ><a href='editUser.php?id=".$row['id']."'> <i class='fa fa-edit'></i> </a></td>
+                    <td >
+                        <a href='editUser.php?id=".$row['id']."'> <i class='fa fa-edit'></i> </a>
+                    </td>
+                        
                     <td >";
 
                         echo ( $row['user_level'] == 1 ) ? ( "" ) : ( "<a href='delUser.php?id=".$row['id']."'> <i class='fa fa-trash-o'></i> </a>" );
@@ -133,12 +136,6 @@
             }
             echo'</table>';
             mysqli_free_result($result);
-            mysqli_close($dbconnect);
-
         }
-    }
-    
-    else {
-        header('location:../index.php');
-    }
+    } 
 ?>

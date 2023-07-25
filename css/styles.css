@@ -1,0 +1,55 @@
+.logo-image {
+    width: 80px;
+    height: auto;
+}
+
+.signup-image {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+.signup-image .login-box-msg {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.main-header {
+    background-color: black;
+    font-family: "futura light font";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "futura light font";
+}
+
+#search-btn {
+    height: 30px;
+    margin-left: -40px;
+    z-index: 7;
+    border: none;
+}
+
+
+/******************************  SCROLL TO TOP STYLING  **************************************/
+#scrollBtn {
+    /*display: none;*/
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 100;
+    border: none;
+    outline: none;
+    background-color: none;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 40px;
+}
+
+#scrollBtn:hover {
+    color: white;
+}
+/*********************************************************************************************/
+

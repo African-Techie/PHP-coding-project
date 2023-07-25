@@ -118,7 +118,7 @@
             echo "<p class='error-msg'><i class='fa fa-exclamation-circle warning-icon'></i>  $msg<br></p>";
         }
     ?>
-    <h3 align=center>Registration Form</h3>
+    <h3 align=center>Join Fyvee Family</h3>
 
     <div class="first-entries">
         <label class="fa fa-user"></label>
